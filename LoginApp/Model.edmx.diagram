@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b9a7e3f433444e98b4357a9878f091a4" Name="Diagram1">
+        <EntityTypeShape EntityType="UniversityModel.Address" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="UniversityModel.Course" Width="1.5" PointX="5.25" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="UniversityModel.Faculty" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="UniversityModel.Lector" Width="1.5" PointX="3" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="UniversityModel.Lesson" Width="1.5" PointX="7.5" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="UniversityModel.Student" Width="1.5" PointX="7.5" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="UniversityModel.Subject" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="UniversityModel.FK_Faculty_Address" ManuallyRouted="false" />
+        <AssociationConnector Association="UniversityModel.FK_Lector_Address" ManuallyRouted="false" />
+        <AssociationConnector Association="UniversityModel.FK_Course_Faculty" ManuallyRouted="false" />
+        <AssociationConnector Association="UniversityModel.FK_Lesson_Course" ManuallyRouted="false" />
+        <AssociationConnector Association="UniversityModel.FK_Student_Course" ManuallyRouted="false" />
+        <AssociationConnector Association="UniversityModel.FK_Lesson_Lector" ManuallyRouted="false" />
+        <AssociationConnector Association="UniversityModel.FK_Lesson_Subject" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="UniversityModel.Audit" Width="1.5" PointX="14.875" PointY="1.375" />
+        <EntityTypeShape EntityType="UniversityModel.User" Width="1.5" PointX="12.625" PointY="1" />
+        <EntityTypeShape EntityType="UniversityModel.UserRoles" Width="1.5" PointX="10.375" PointY="1.5" />
+        <AssociationConnector Association="UniversityModel.FK_Audit_User" />
+        <AssociationConnector Association="UniversityModel.FK_User_UserRole" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
