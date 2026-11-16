@@ -24,7 +24,7 @@ namespace LoginApp.Forum
         Helper helper = new Helper();
         private void AdminMain_Load(object sender, EventArgs e)
         {
-            this.Text = $"Admin Main - Welcome {user.Name} {user.Surname}";
+            this.Text = $"Admin Main - Welcome {user.Name} {user.Surname} :)";
             helper.ReloadGrid(gv_Data, factory.GetStudentViews(), new List<int> { 0 }, true, true);
         }
 
