@@ -19,6 +19,7 @@ namespace LoginApp
             InitializeComponent();
         }
         SecurityService securityService = new SecurityService();
+        private int remainingTimeInSeconds = 0;
         private void btn_Login_Click(object sender, EventArgs e)
         {
             string username = txt_UserName.Text;
@@ -48,6 +49,10 @@ namespace LoginApp
                 else
                 {
                     lbl_Error.Text = result.ErrorMessage;
+                    remainingTimeInSeconds = result.Value1; // Set the remaining time from the result
+                    lb_RemainingTime.Text = result.Value1 > 0 ? $"Remaining time: {result.Value1} seconds" : string.Empty;
+                    timer.Start();
+                    timer.Interval = 1000; // Set the timer interval to 1 second
                 }
             }
             else
@@ -71,6 +76,21 @@ namespace LoginApp
         {
             txt_UserName.Text = "EdgarsB";
             txt_Password.Text = "Pass123!";
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if(remainingTimeInSeconds > 0)
+            {
+                remainingTimeInSeconds--;
+                lb_RemainingTime.Text = $"Remaining time: {remainingTimeInSeconds} seconds";
+            }
+            else
+            {
+                remainingTimeInSeconds = 0;
+                lb_RemainingTime.Text = string.Empty;
+                timer.Stop();
+            }
         }
     }
 }

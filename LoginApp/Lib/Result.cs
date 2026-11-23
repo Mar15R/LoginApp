@@ -11,5 +11,6 @@ namespace LoginApp.Lib
         public T Data { get; set; } 
         public string ErrorMessage { get; set; }
         public bool IsSuccess => string.IsNullOrEmpty(ErrorMessage);
+        public int Value1 { get; set; } // Add this property to hold the integer value
     }
 }

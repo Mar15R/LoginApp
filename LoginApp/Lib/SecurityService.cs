@@ -22,13 +22,13 @@ namespace LoginApp.Lib
                 {
                     if (VerifyPassword(password, user.Password))
                     {
-                        if (user.Enabled || DateTime.Now > user.DisableUntil)
+                        if (user.Enabled || DateTime.Now > user.DisableUntil || user.DisableUntil == null)
                         {
                             result = new Result<User> { Data = user };
                         }
                         else
                         {
-                            result = new Result<User> { ErrorMessage = "User is not enabled." };
+                            result = new Result<User> { ErrorMessage = "User is not enabled.", Value1 = 20 };
                         }
                     }
                     else
@@ -93,7 +93,7 @@ namespace LoginApp.Lib
                     return;
                 }
                 user.Enabled = enable;
-                user.DisableUntil = enable ? (DateTime?)null : DateTime.Now.AddSeconds(10);
+                user.DisableUntil = enable ? (DateTime?)null : DateTime.Now.AddSeconds(20);
                 repo.UpdateEntity<User>(user);
             }
             catch (Exception ex)
