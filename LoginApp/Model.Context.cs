@@ -37,5 +37,6 @@ namespace LoginApp
         public virtual DbSet<Audit> Audit { get; set; }
         public virtual DbSet<User> User { get; set; }
         public virtual DbSet<UserRoles> UserRoles { get; set; }
+        public virtual DbSet<Errors> Errors { get; set; }
     }
 }

@@ -26,6 +26,7 @@
         <EntityTypeShape EntityType="UniversityModel.UserRoles" Width="1.5" PointX="3.375" PointY="11.5" />
         <AssociationConnector Association="UniversityModel.FK_Audit_User" />
         <AssociationConnector Association="UniversityModel.FK_User_UserRole" />
+        <EntityTypeShape EntityType="UniversityModel.Errors" Width="1.5" PointX="2.5" PointY="1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

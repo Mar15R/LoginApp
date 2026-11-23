@@ -29,24 +29,37 @@
         private void InitializeComponent()
         {
             this.gv_Data = new System.Windows.Forms.DataGridView();
+            this.btn_Users = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gv_Data)).BeginInit();
             this.SuspendLayout();
             // 
             // gv_Data
             // 
             this.gv_Data.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gv_Data.Location = new System.Drawing.Point(79, 64);
+            this.gv_Data.Location = new System.Drawing.Point(473, 28);
             this.gv_Data.Name = "gv_Data";
             this.gv_Data.RowHeadersWidth = 62;
             this.gv_Data.RowTemplate.Height = 28;
-            this.gv_Data.Size = new System.Drawing.Size(2322, 958);
+            this.gv_Data.Size = new System.Drawing.Size(1928, 994);
             this.gv_Data.TabIndex = 0;
+            this.gv_Data.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gv_Data_CellContentClick);
+            // 
+            // btn_Users
+            // 
+            this.btn_Users.Location = new System.Drawing.Point(108, 50);
+            this.btn_Users.Name = "btn_Users";
+            this.btn_Users.Size = new System.Drawing.Size(291, 68);
+            this.btn_Users.TabIndex = 1;
+            this.btn_Users.Text = "Users";
+            this.btn_Users.UseVisualStyleBackColor = true;
+            this.btn_Users.Click += new System.EventHandler(this.btn_Users_Click);
             // 
             // AdminMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(2451, 1195);
+            this.Controls.Add(this.btn_Users);
             this.Controls.Add(this.gv_Data);
             this.Name = "AdminMain";
             this.Text = "AdminMain";
@@ -60,5 +73,6 @@
         #endregion
 
         private System.Windows.Forms.DataGridView gv_Data;
+        private System.Windows.Forms.Button btn_Users;
     }
 }

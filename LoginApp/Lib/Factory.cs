@@ -32,5 +32,88 @@ namespace LoginApp.Lib
             catch { throw; }
             return null;
         }
+        public Result<bool> CheckIfUsernameExists(string username)
+        {
+            try
+            {
+                User user = repo.GetEntityByFilter<User>(u => u.UserName == username);
+                if (user != null)
+                {
+                    return new Result<bool> { Data = true };
+                }
+                else
+                {
+                    return new Result<bool> { Data = false };
+                }
+            }
+            catch (Exception ew)
+            {
+                return new Result<bool> { ErrorMessage = ew.Message };
+            }
+        }
+         public List<UserView> GetUserViews()
+        {
+            try
+            {
+                List<User> users = repo.GetEntities<User>(100);
+                if (users != null)
+                {
+                    return users.Select(u => new UserView
+                    {
+                        UserName = u.UserName,
+                        Name = u.Name,
+                        Surname = u.Surname,
+                        Password = u.Password,
+                        Enabled = u.Enabled,
+                        UserRole = u.UserRole
+                    }).ToList();
+                }
+            }
+            catch { throw; }
+            return null;
+        }
+        public Result<bool> UpdateUser(UserView userview)
+        {
+            try
+            {
+                var entity = repo.GetEntityById<User>(userview.UserName);
+                if (entity == null)
+                {
+                    return new Result<bool> { ErrorMessage = "User not found." };
+                }
+                else
+                {
+                    entity.Name = userview.Name;
+                    entity.Surname = userview.Surname;
+                    entity.Password = userview.Password;
+                    entity.Enabled = userview.Enabled;
+                    entity.DisableUntil = userview.DisableUntil;
+                    entity.UserRole = userview.UserRole;
+                }
+                return new Result<bool> { Data = repo.UpdateEntity<User>(entity) };
+            }
+            catch (Exception ex)
+            {
+                return new Result<bool> { ErrorMessage = ex.Message };
+            }
+        }
+        public Result<List<UserRoles>> GetUserRoles()
+        {
+            try
+            {
+                List<UserRoles> userRoles = repo.GetEntities<UserRoles>();
+                if (userRoles != null)
+                {
+                    return new Result<List<UserRoles>> { Data = userRoles };
+                }
+            }
+            catch (Exception ex)
+            {
+                return new Result<List<UserRoles>> { ErrorMessage = ex.Message };
+            }
+            return new Result<List<UserRoles>> { ErrorMessage = "No user roles found." };
+        }
+
+
     }
 }

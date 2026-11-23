@@ -42,6 +42,16 @@
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
           <Property Name="Id_Faculty" Type="bigint" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'University.dbo.Errors' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Errors">
+          <Key>
+            <PropertyRef Name="Id_Error" />
+          </Key>
+          <Property Name="Id_Error" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Message" Type="nchar" MaxLength="500" />
+          <Property Name="Date" Type="datetime" />
+        </EntityType>
         <EntityType Name="Faculty">
           <Key>
             <PropertyRef Name="Id_Faculty" />
@@ -110,7 +120,7 @@
           <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Surname" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="Enabled" Type="bit" Nullable="false" />
           <Property Name="DisableUntil" Type="datetime" />
           <Property Name="UserRole" Type="nvarchar" MaxLength="50" />
@@ -243,6 +253,13 @@
           <EntitySet Name="Subject" EntityType="Self.Subject" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserRoles" EntityType="Self.UserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Errors" EntityType="Self.Errors" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Errors].[Id_Error] AS [Id_Error], 
+    [Errors].[Message] AS [Message], 
+    [Errors].[Date] AS [Date]
+    FROM [dbo].[Errors] AS [Errors]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_Audit_User" Association="Self.FK_Audit_User">
             <End Role="User" EntitySet="User" />
             <End Role="Audit" EntitySet="Audit" />
@@ -520,6 +537,7 @@
             <End Role="UserRoles" EntitySet="UserRoles" />
             <End Role="User" EntitySet="User" />
           </AssociationSet>
+          <EntitySet Name="Errors" EntityType="UniversityModel.Errors" />
         </EntityContainer>
         <EntityType Name="Audit">
           <Key>
@@ -538,7 +556,7 @@
           <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Surname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="Enabled" Type="Boolean" Nullable="false" />
           <Property Name="DisableUntil" Type="DateTime" Precision="3" />
           <Property Name="UserRole" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -577,6 +595,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Errors">
+          <Key>
+            <PropertyRef Name="Id_Error" />
+          </Key>
+          <Property Name="Id_Error" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Message" Type="String" MaxLength="500" FixedLength="true" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -708,6 +734,15 @@
               <MappingFragment StoreEntitySet="UserRoles">
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="UserRole" ColumnName="UserRole" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Errors">
+            <EntityTypeMapping TypeName="UniversityModel.Errors">
+              <MappingFragment StoreEntitySet="Errors">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Id_Error" ColumnName="Id_Error" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

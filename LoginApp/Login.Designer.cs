@@ -41,7 +41,7 @@
             // 
             this.txt_Username.Location = new System.Drawing.Point(139, 28);
             this.txt_Username.Name = "txt_Username";
-            this.txt_Username.Size = new System.Drawing.Size(100, 26);
+            this.txt_Username.Size = new System.Drawing.Size(223, 26);
             this.txt_Username.TabIndex = 0;
             // 
             // txt_Password
@@ -49,14 +49,14 @@
             this.txt_Password.Location = new System.Drawing.Point(139, 95);
             this.txt_Password.Name = "txt_Password";
             this.txt_Password.PasswordChar = '*';
-            this.txt_Password.Size = new System.Drawing.Size(100, 26);
+            this.txt_Password.Size = new System.Drawing.Size(223, 26);
             this.txt_Password.TabIndex = 1;
             // 
             // btn_Login
             // 
-            this.btn_Login.Location = new System.Drawing.Point(139, 159);
+            this.btn_Login.Location = new System.Drawing.Point(40, 159);
             this.btn_Login.Name = "btn_Login";
-            this.btn_Login.Size = new System.Drawing.Size(100, 39);
+            this.btn_Login.Size = new System.Drawing.Size(322, 39);
             this.btn_Login.TabIndex = 2;
             this.btn_Login.Text = "Login";
             this.btn_Login.UseVisualStyleBackColor = true;
@@ -64,12 +64,13 @@
             // 
             // btn_Register
             // 
-            this.btn_Register.Location = new System.Drawing.Point(139, 233);
+            this.btn_Register.Location = new System.Drawing.Point(40, 233);
             this.btn_Register.Name = "btn_Register";
-            this.btn_Register.Size = new System.Drawing.Size(100, 39);
+            this.btn_Register.Size = new System.Drawing.Size(322, 39);
             this.btn_Register.TabIndex = 3;
             this.btn_Register.Text = "Register";
             this.btn_Register.UseVisualStyleBackColor = true;
+            this.btn_Register.Click += new System.EventHandler(this.btn_Register_Click);
             // 
             // label1
             // 
@@ -101,7 +102,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1285, 912);
+            this.ClientSize = new System.Drawing.Size(438, 500);
             this.Controls.Add(this.lbl_Error);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -111,6 +112,7 @@
             this.Controls.Add(this.txt_Username);
             this.Name = "Login";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Login_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
