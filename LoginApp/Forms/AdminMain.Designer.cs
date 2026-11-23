@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.gv_Data = new System.Windows.Forms.DataGridView();
+            this.btn_Users = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gv_Data)).BeginInit();
             this.SuspendLayout();
             // 
@@ -39,12 +40,24 @@
             this.gv_Data.Name = "gv_Data";
             this.gv_Data.Size = new System.Drawing.Size(937, 426);
             this.gv_Data.TabIndex = 1;
+            this.gv_Data.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gv_Data_CellContentClick);
+            // 
+            // btn_Users
+            // 
+            this.btn_Users.Location = new System.Drawing.Point(12, 12);
+            this.btn_Users.Name = "btn_Users";
+            this.btn_Users.Size = new System.Drawing.Size(181, 35);
+            this.btn_Users.TabIndex = 2;
+            this.btn_Users.Text = "Users";
+            this.btn_Users.UseVisualStyleBackColor = true;
+            this.btn_Users.Click += new System.EventHandler(this.btn_Users_Click);
             // 
             // AdminMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1148, 450);
+            this.Controls.Add(this.btn_Users);
             this.Controls.Add(this.gv_Data);
             this.Name = "AdminMain";
             this.Text = "AdminMain";
@@ -58,5 +71,6 @@
         #endregion
 
         private System.Windows.Forms.DataGridView gv_Data;
+        private System.Windows.Forms.Button btn_Users;
     }
 }

@@ -55,5 +55,22 @@ namespace LoginApp
                 lbl_Error.Text = "Please enter both username and password.";
             }
         }
+
+        private void btn_Register_Click(object sender, EventArgs e)
+        {
+            using (var form = new UserRegistration())
+            {
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    this.Text = "User registered successfully. Please log in.";
+                }
+            }
+        }
+
+        private void Login_Load(object sender, EventArgs e)
+        {
+            txt_UserName.Text = "EdgarsB";
+            txt_Password.Text = "Pass123!";
+        }
     }
 }

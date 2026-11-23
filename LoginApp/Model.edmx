@@ -32,6 +32,14 @@
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
           <Property Name="Id_Faculty" Type="bigint" />
         </EntityType>
+        <EntityType Name="Errors">
+          <Key>
+            <PropertyRef Name="Id_Error" />
+          </Key>
+          <Property Name="Id_Error" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Message" Type="nvarchar" MaxLength="500" />
+          <Property Name="Date" Type="datetime" />
+        </EntityType>
         <EntityType Name="Faculty">
           <Key>
             <PropertyRef Name="Id_Faculty" />
@@ -91,7 +99,7 @@
           <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Surname" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="Enabled" Type="bit" Nullable="false" />
           <Property Name="DisableUntil" Type="datetime" />
           <Property Name="UserRole" Type="nvarchar" MaxLength="50" />
@@ -217,6 +225,7 @@
           <EntitySet Name="Address" EntityType="Self.Address" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Audit" EntityType="Self.Audit" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Course" EntityType="Self.Course" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Errors" EntityType="Self.Errors" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Faculty" EntityType="Self.Faculty" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Lector" EntityType="Self.Lector" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Lesson" EntityType="Self.Lesson" Schema="dbo" store:Type="Tables" />
@@ -482,6 +491,7 @@
             <End Role="UserRoles" EntitySet="UserRoles" />
             <End Role="User" EntitySet="User" />
           </AssociationSet>
+          <EntitySet Name="Errors" EntityType="UniversityModel.Errors" />
         </EntityContainer>
         <EntityType Name="Audit">
           <Key>
@@ -500,7 +510,7 @@
           <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Surname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="Enabled" Type="Boolean" Nullable="false" />
           <Property Name="DisableUntil" Type="DateTime" Precision="3" />
           <Property Name="UserRole" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -539,6 +549,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Errors">
+          <Key>
+            <PropertyRef Name="Id_Error" />
+          </Key>
+          <Property Name="Id_Error" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Message" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -650,6 +668,15 @@
               <MappingFragment StoreEntitySet="UserRoles">
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="UserRole" ColumnName="UserRole" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Errors">
+            <EntityTypeMapping TypeName="UniversityModel.Errors">
+              <MappingFragment StoreEntitySet="Errors">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Id_Error" ColumnName="Id_Error" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

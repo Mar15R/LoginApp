@@ -70,6 +70,7 @@
             this.btn_Register.TabIndex = 3;
             this.btn_Register.Text = "Register";
             this.btn_Register.UseVisualStyleBackColor = true;
+            this.btn_Register.Click += new System.EventHandler(this.btn_Register_Click);
             // 
             // lbl_Error
             // 
@@ -111,6 +112,7 @@
             this.Controls.Add(this.txt_UserName);
             this.Name = "Login";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Login_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
